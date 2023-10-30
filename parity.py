@@ -46,12 +46,12 @@ def main():
         print("Transmitted byte:  ", end="")
         print(parity_byte)
 
+
+
         ## Part 1b, detecting errors
         received_byte = corruptByte(parity_byte, num_errors)
         print("Received Byte:     ", end="")
         print(received_byte)
-
-
 
         received_parity = received_byte[-1]
         print("Received Parity:   ", end="")
