@@ -33,46 +33,44 @@ def corruptByte(byte, num_errors):
 
 #### Main function to kick off the whole program.
 def main():
-    num_errors = input("Enter number of errors to add (0-9): ") # number of errors to add to byte during transmission
-    num_errors = int(num_errors)
+    # Repeats 4 times, using 0, 1, 2, or 3 errors each time.
+    for num_errors in range (0,4):
+        print("Number of errors:  " + str(num_errors))
 
-    if (num_errors < 0 or num_errors > 9):
-        print("Improper number of errors provided. Number should be between 0-9")
-        exit()
+        ## Part 1a, generating byte and parity
+        byte = genByte()
+        parity_bit = genParity(byte)
+        parity_byte = byte.copy()
+        parity_byte.append(parity_bit)
 
-    ## Part 1a, generating byte and parity
-    byte = genByte()
-    parity_bit = genParity(byte)
-    parity_byte = byte.copy()
-    parity_byte.append(parity_bit)
+        print("Transmitted byte:  ", end="")
+        print(parity_byte)
 
-    print("Transmitted byte:")
-    print(parity_byte)
+        ## Part 1b, detecting errors
+        received_byte = corruptByte(parity_byte, num_errors)
+        print("Received Byte:     ", end="")
+        print(received_byte)
 
-    ## Part 1b, detecting errors
-    received_byte = corruptByte(parity_byte, num_errors)
-    print("Received Byte:")
-    print(received_byte)
 
-    print("")
 
-    received_parity = received_byte[-1]
-    print("Received Parity:")
-    print(received_parity)
+        received_parity = received_byte[-1]
+        print("Received Parity:   ", end="")
+        print(received_parity)
 
-    received_byte_noparity = received_byte.copy()
-    received_byte_noparity.pop()
-    calculated_parity = genParity(received_byte_noparity)
-    print("Calculated Parity:")
-    print(calculated_parity)
+        received_byte_noparity = received_byte.copy()
+        received_byte_noparity.pop()
+        calculated_parity = genParity(received_byte_noparity)
+        print("Calculated Parity: ", end="")
+        print(calculated_parity)
 
-    print("")
 
-    match = 1 if received_parity == calculated_parity else 0
-    if match == 1:
-        print("No error detected.")
-    else:
-        print("Error detected!")
+        match = 1 if received_parity == calculated_parity else 0
+        if match == 1:
+            print("No error detected.")
+        else:
+            print("Error detected!")
+
+        print("")
 
 
 if __name__ == "__main__":
