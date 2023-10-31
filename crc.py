@@ -25,6 +25,7 @@ def genCRC(data):
     data_array = list(data)
     for n in range(len(data_array)):
         data_array[n] = int(data_array[n])
+
     next = []
     present = []
     for n in range(8):
@@ -41,11 +42,11 @@ def genCRC(data):
         next[5] = present[4]
         next[6] = present[5]
         next[7] = present[6]
-
         present = next.copy()
 
     for n in range(len(present)):
         present[n] = str(present[n])
+
     present = "".join(present)
 
     return present
@@ -65,15 +66,53 @@ def genErrors(data, num_errors):
 
 #### Main function to kick off the whole program.
 def main():
-    datastream = genBytes(2)
-    print(datastream)
+    print("Part 2a: ")
+    for n in range (5):
+        datastream = genBytes(2)
+        crc = genCRC(datastream)
+        # num_errors = random.randint(0,2)
+        received_datastream = genErrors(datastream, n)
+        received_crc = genCRC(received_datastream)
 
-    # testdata = '00001111'
-    crc = genCRC(datastream)
-    print(crc)
+        print("  Run " + str(n+1) + " with " + str(n) + " error(s)")
+        print("    Transmitted Data:  ", end="")
+        print(datastream + " / " + str(hex(int(datastream,2))))
+    
+        print("    Received Data:     ", end="")
+        print(received_datastream + " / " + str(hex(int(received_datastream,2))))
 
-    corrupt_datastream = genErrors(datastream, 1)
-    print(corrupt_datastream)
+        print("    Transmitted CRC:   ", end="")
+        print(str(crc) + " / " + str(hex(int(crc,2))))
+
+        print("    Received CRC:      ", end="")
+        print(str(received_crc) + " / " + str(hex(int(received_crc,2))))
+
+        print("")
+    print("")
+
+    print("Part 2b: ")
+    for n in range (3):
+        datastream = genBytes(32)
+        crc = genCRC(datastream)
+        # num_errors = random.randint(0,2)
+        received_datastream = genErrors(datastream, n)
+        received_crc = genCRC(received_datastream)
+
+        print("  Run " + str(n+1) + " with " + str(n) + " error(s)")
+        print("    Transmitted Data:  ", end="")
+        print(hex(int(datastream,2)))
+    
+        print("    Received Data:     ", end="")
+        print(hex(int(received_datastream,2)))
+
+        print("    Transmitted CRC:   ", end="")
+        print(str(crc) + " / " + str(hex(int(crc,2))))
+
+        print("    Received CRC:      ", end="")
+        print(str(received_crc) + " / " + str(hex(int(received_crc,2))))
+
+        print("")
+        
 
 if __name__ == "__main__":
     main()
