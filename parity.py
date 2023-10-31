@@ -1,6 +1,6 @@
 import random
 
-# Part 1 of lab: Parity
+# Part 1 of lab 8: Parity
 
 ## Part 1a
 #### genByte will generate a byte of 8 bits, and return them as a list.

@@ -1,15 +1,8 @@
 import random
 
-### Part 2 of lab
+### Part 2 of lab 8: crc
 
-## Part 2a
-# *Write a program that generates an 8-bit CRC checksum for a data stream.
-# An example of this program follows, in pseudocode.
-# This same program may be used to check correct reception of the data stream.
-# The simplest data stream for which this may be used is two bytes;
-# simulate at least 5 different 2-byte data streams both with and without errors and log the results.
-# Particularly interesting are error data streams which differ by only 1 bit from the correct data.
-
+### Made genBytes generic, to generate a given number of bytes randomly
 def genBytes(num):
     data = ''
     for n in range (num):
@@ -20,6 +13,7 @@ def genBytes(num):
         data += byte
     return data
 
+### Given binary data (as a string), will generate and return a CRC checksum
 def genCRC(data):
     # Initialize everything:
     data_array = list(data)
@@ -51,6 +45,7 @@ def genCRC(data):
 
     return present
 
+#### genErrors will take given binary data, and flip the passed number (num_errors) of random bits.
 def genErrors(data, num_errors):
     corrupt_data = list(data)
     error_locations = random.sample(range(0,len(data)), num_errors)
@@ -60,9 +55,8 @@ def genErrors(data, num_errors):
     return corrupt_data
 
 
-## Part 2b
-# Also, simulate at least one 32-byte data stream with at least one error and log the results.
-# Include a screenshot of the results and discuss the probability of an undetected error occurring
+
+
 
 #### Main function to kick off the whole program.
 def main():
@@ -87,6 +81,12 @@ def main():
         print("    Received CRC:      ", end="")
         print(str(received_crc) + " / " + str(hex(int(received_crc,2))))
 
+        match = 1 if crc == received_crc else 0
+        if match == 1:
+            print("  No error detected.")
+        else:
+            print("  Error detected!")
+
         print("")
     print("")
 
@@ -110,6 +110,12 @@ def main():
 
         print("    Received CRC:      ", end="")
         print(str(received_crc) + " / " + str(hex(int(received_crc,2))))
+
+        match = 1 if crc == received_crc else 0
+        if match == 1:
+            print("  No error detected.")
+        else:
+            print("  Error detected!")
 
         print("")
         
