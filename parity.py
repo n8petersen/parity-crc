@@ -20,13 +20,13 @@ def genParity(byte):
 
 
 ## Part 1b
-#### corruptByte will take a given byte, and flip the passed number (num_errors) of random bits.
-def corruptByte(byte, num_errors):
-    corrupt_byte = byte.copy()
-    error_locations = random.sample(range(0,len(byte)), num_errors)
+#### corruptData will take given data, and flip the passed number (num_errors) of random bits.
+def corruptData(data, num_errors):
+    corrupt_data = data.copy()
+    error_locations = random.sample(range(0,len(data)), num_errors)
     for i in error_locations:
-        corrupt_byte[i] = 1 if corrupt_byte[i] == 0 else 0
-    return corrupt_byte
+        corrupt_data[i] = 1 if corrupt_data[i] == 0 else 0
+    return corrupt_data
 
 
 
@@ -43,13 +43,13 @@ def main():
         parity_byte = byte.copy()
         parity_byte.append(parity_bit)
 
-        print("Transmitted byte:  ", end="")
+        print("Transmitted Byte:  ", end="")
         print(parity_byte)
 
 
 
         ## Part 1b, detecting errors
-        received_byte = corruptByte(parity_byte, num_errors)
+        received_byte = corruptData(parity_byte, num_errors)
         print("Received Byte:     ", end="")
         print(received_byte)
 
