@@ -1,10 +1,8 @@
 ### Part 1 of lab
-
 ## Part 1a
 # Write a program (in any language, such as C, C++, Java, JavaScript, or Python)
 # that generates a parity bit (even or odd - you choose)
 # for each byte of data and verify its correct operation.*
-        
 ## Part 1b
 # Write another program to detect correct data based on the parity you have defined.
 # Then use the program to generate a byte of data along with the parity bit (9-bits total),
