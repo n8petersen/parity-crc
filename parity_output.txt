@@ -1,0 +1,37 @@
+C:\Users\Alex\git\it327\parity-crc [Alex ≡ +1 ~0 -0 !]> python.exe .\parity.py
+Byte: 01000111
+Parity Bit: 0
+
+Enter number of errors (0-8): 0
+
+No errors generated
+
+C:\Users\Alex\git\it327\parity-crc [Alex ≡ +1 ~0 -0 !]> python.exe .\parity.py
+Byte: 11101010
+Parity Bit: 1
+
+Enter number of errors (0-8): 1
+
+Byte with errors: 01101010
+Parity Bit: 0
+Error detected
+
+C:\Users\Alex\git\it327\parity-crc [Alex ≡ +1 ~0 -0 !]> python.exe .\parity.py
+Byte: 11110100
+Parity Bit: 1
+
+Enter number of errors (0-8): 2
+
+Byte with errors: 00110100
+Parity Bit: 1
+No error detected
+
+C:\Users\Alex\git\it327\parity-crc [Alex ≡ +1 ~0 -0 !]> python.exe .\parity.py
+Byte: 11111110
+Parity Bit: 1
+
+Enter number of errors (0-8): 3
+
+Byte with errors: 00011110
+Parity Bit: 0
+Error detected
